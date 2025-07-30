@@ -2,11 +2,12 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route("/home", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
         name = request.form["name"]
         return f"<h1>Hello, {name}!</h1>"
+    
     return '''
         <form method="POST">
             <input type="text" name="name" placeholder="Enter your name">
@@ -15,7 +16,7 @@ def home():
     '''
 @app.route("/about")
 def about():
-    return "This is the About page"
+    return render_template("about.html")
 
 
 if __name__ == "__main__":
